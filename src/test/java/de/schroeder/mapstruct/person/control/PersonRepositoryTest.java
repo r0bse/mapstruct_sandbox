@@ -1,10 +1,17 @@
 package de.schroeder.mapstruct.person.control;
 
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 import de.schroeder.mapstruct.person.entity.PersonEntity;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +27,50 @@ public class PersonRepositoryTest {
 
     @Autowired
     private PersonRepository personRepository;
+    private PersonEntity person;
 
-    @Test
-    public void save(){
-
+    @Before
+    public void setup(){
         ZonedDateTime birthday = ZonedDateTime.of(1963, 3, 10, 0, 0, 0, 0, ZoneId.of("UTC"));
-        PersonEntity person = new PersonEntity();
+
+        person = new PersonEntity();
         person.setName("Peter");
         person.setSurname("Parker");
         person.setBirthday(birthday);
 
         personRepository.save(person);
+    }
+
+    @After
+    public void cleanup(){
+        personRepository.deleteAllInBatch();
+    }
+
+    @Test
+    public void save(){
 
         assertNotNull(person.getId());
+    }
+
+    @Test
+    public void get(){
+
+        List<PersonEntity> result = personRepository.findAll();
+        assertThat(result.size(), is(1));
+    }
+
+    @Test
+    public void getOne(){
+
+        PersonEntity result = personRepository.getOne(person.getId());
+        assertThat(result, is(equalTo(person)));
+    }
+
+    @Test
+    public void delete(){
+        personRepository.delete(person);
+        List<PersonEntity> result = personRepository.findAll();
+        assertThat(result, is(empty()));
+
     }
 }
