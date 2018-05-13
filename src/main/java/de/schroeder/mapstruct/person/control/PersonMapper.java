@@ -1,9 +1,11 @@
-package de.schroeder.mapstruct.marvel.control;
+package de.schroeder.mapstruct.person.control;
 
-import de.schroeder.mapstruct.marvel.boundary.PersonResource;
-import de.schroeder.mapstruct.marvel.entity.PersonEntity;
+import de.schroeder.mapstruct.person.boundary.PersonResource;
+import de.schroeder.mapstruct.person.entity.PersonEntity;
 import java.util.List;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
 
 /**
@@ -18,7 +20,9 @@ public interface PersonMapper {
 
     List<PersonResource> mapToResources(List<PersonEntity> entity);
 
-//    @Mappings ({
-//    })
+    @Mappings({
+        @Mapping(target = "fullname", expression = "java(entity.getName() + \" \" + entity.getSurname())"),
+        @Mapping(source = "birthday", target = "birthday")
+    })
     PersonResource mapToResource(PersonEntity entity);
 }

@@ -1,7 +1,8 @@
-package de.schroeder.mapstruct.marvel.control;
+package de.schroeder.mapstruct.person.control;
 
-import de.schroeder.mapstruct.marvel.boundary.PersonResource;
-import de.schroeder.mapstruct.marvel.entity.PersonEntity;
+import de.schroeder.mapstruct.person.boundary.PersonResource;
+import de.schroeder.mapstruct.person.entity.PersonEntity;
+import java.time.ZonedDateTime;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,15 @@ public class PersonService {
 
     public List<PersonResource> getAllResources(){
         return personMapper.mapToResources(personRepository.findAll());
+    }
+
+    public PersonResource getOneResource(Long id) {
+        return personMapper.mapToResource(personRepository.getOne(id));
+    }
+
+    public Integer calculateAge(PersonEntity person){
+
+        ZonedDateTime birthday = person.getBirthday();
+        return ZonedDateTime.now().getYear() - birthday.getYear();
     }
 }

@@ -6,9 +6,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+import de.schroeder.mapstruct.person.PersonUtil;
 import de.schroeder.mapstruct.person.entity.PersonEntity;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
@@ -31,13 +30,7 @@ public class PersonRepositoryTest {
 
     @Before
     public void setup(){
-        ZonedDateTime birthday = ZonedDateTime.of(1963, 3, 10, 0, 0, 0, 0, ZoneId.of("UTC"));
-
-        person = new PersonEntity();
-        person.setName("Peter");
-        person.setSurname("Parker");
-        person.setBirthday(birthday);
-
+        person = PersonUtil.creatValidPersonEntity();
         personRepository.save(person);
     }
 
@@ -71,6 +64,5 @@ public class PersonRepositoryTest {
         personRepository.delete(person);
         List<PersonEntity> result = personRepository.findAll();
         assertThat(result, is(empty()));
-
     }
 }
