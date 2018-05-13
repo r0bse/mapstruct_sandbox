@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: logs/db.changelog-initial-database.yaml
+      relativeToChangelogFile: true
+      splitStatements: true
+      stripComments: true
+  - include:
+      file: logs/db.changelog-initial-data.sql
+      relativeToChangelogFile: true
+      splitStatements: true
+      stripComments: true

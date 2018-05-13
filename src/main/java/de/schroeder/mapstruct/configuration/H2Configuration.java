@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 /**
  * mainly copied from here: https://techdev.io/en/developer-blog/querying-the-embedded-h2-database-of-a-spring-boot-application
  */
 @Configuration
-@Profile("dev") // Only activate this in the "dev" profile
 public class H2Configuration {
 
     // TCP port for remote connections, default 9092
