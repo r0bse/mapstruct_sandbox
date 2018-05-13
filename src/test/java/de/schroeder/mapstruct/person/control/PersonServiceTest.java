@@ -36,10 +36,12 @@ public class PersonServiceTest {
     private PersonResource personResource_2;
     private List<PersonResource> resourceList;
 
-    private PersonService personService = new PersonService(personMapper, personRepository);
+    private PersonService personService;
 
     @Before
     public void setUp(){
+
+        personService =  new PersonService(personMapper, personRepository);
 
         ZonedDateTime birthday = ZonedDateTime.of(1963, 3, 10, 0, 0, 0, 0, ZoneId.of("UTC"));
 
@@ -80,8 +82,7 @@ public class PersonServiceTest {
 
         List<PersonEntity> resultList = personService.getAllEntities();
         assertThat(resultList, is(not(empty())));
-        assertThat(resultList, contains(personEntity_1));
-        assertThat(resultList, contains(personEntity_2));
+        assertThat(resultList, contains(personEntity_1, personEntity_2));
     }
 
     @Test
@@ -92,8 +93,7 @@ public class PersonServiceTest {
 
         List<PersonResource> resultList = personService.getAllResources();
         assertThat(resultList, is(not(empty())));
-        assertThat(resultList, contains(personResource_1));
-        assertThat(resultList, contains(personResource_2));
+        assertThat(resultList, contains(personResource_1, personResource_2));
     }
 
     @Test
