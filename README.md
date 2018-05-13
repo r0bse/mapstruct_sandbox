@@ -1,5 +1,5 @@
 # mapstruct_sandbox
-Sandbox for playing around with mapstruct in a SpringBoot Project
+Sandbox for playing around with Mapstruct, H2 and Liquibase in a SpringBoot Project
 
 ## MapStruct Overview
 
@@ -10,7 +10,8 @@ http://mapstruct.org/
 
 Uses:
 * gradle
-* H2-Database
+* H2
+* Liquibase
 * Spring Boot
 * Map Struct
 
