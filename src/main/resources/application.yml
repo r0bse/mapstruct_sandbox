@@ -2,17 +2,15 @@ info:
   component: A sandbox for playing with mapstruct in a microservice
 
 spring:
-#  main:
-#    banner-mode: "off"
-#  profiles:
-#    active: local
   application:
     name: mapstruct-sandbox
   jackson:
     serialization:
       write_dates_as_timestamps: false
     time-zone: UTC
-
+  jpa:
+    hibernate:
+      ddl-auto: validate
   h2:
     console:
       enabled: true

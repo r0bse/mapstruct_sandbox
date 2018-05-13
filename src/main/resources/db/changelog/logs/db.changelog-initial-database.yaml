@@ -46,12 +46,10 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: secret_identity
-                  type: VARCHAR(255)
-                  constraints:
-                    nullable: false
+                  name: secret_identity_id
+                  type: BIGINT
         - addForeignKeyConstraint:
-            baseColumnNames: secret_identity
+            baseColumnNames: secret_identity_id
             baseTableName: superhero
             constraintName: secret_identity
             referencedColumnNames: id
