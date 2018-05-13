@@ -19,6 +19,13 @@ Uses:
 
 `./gradlew bootRun`
 
+### REST URLs 
+
+* http://localhost/persons \
+//TODOs
+* http://localhost/superheros
+* http://localhost/secretidenties
+
 ### IntelliJ Configuration
 
 To be able to use Code Completion and run the Application from IntelliJ you have to do 2 things:

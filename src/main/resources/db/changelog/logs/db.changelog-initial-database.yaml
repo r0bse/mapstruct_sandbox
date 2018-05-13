@@ -30,4 +30,29 @@ databaseChangeLog:
                   type: DATETIME(6)
                   constraints:
                     nullable: false
-
+        - createTable:
+            tableName: superhero
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: secret_identity
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: secret_identity
+            baseTableName: superhero
+            constraintName: secret_identity
+            referencedColumnNames: id
+            referencedTableName: person
