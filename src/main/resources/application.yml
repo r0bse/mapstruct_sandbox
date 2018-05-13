@@ -7,13 +7,29 @@ spring:
 #  profiles:
 #    active: local
   application:
-    name: bordcomputer-service
+    name: mapstruct-sandbox
   jackson:
     serialization:
       write_dates_as_timestamps: false
     time-zone: UTC
-  jpa:
-    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:mapstruct-sandbox
+    username: sa
+    password:
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+
+# allows connections via tcp for lookup database in an extern  programm
+h2:
+  tcp:
+    enabled: true
 
 server:
   port: 8080
